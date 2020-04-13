@@ -5,6 +5,7 @@ var helmet = require('helmet')
 var bodyParser = require('body-parser')
 
 var Route = require('./routes/rest')
+var Login = require('./routes/login')
 
 var app = express()
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extend: true}))
 
 app.use('/', new Route('test', { allowedRoles: ['dev'] }).restify())
+app.use('/', new Login('login', { allowedRoles: ['administrator'] }).users())
 app.use('/', require('./routes/auth'))
 
 app.listen(3000, function () {
