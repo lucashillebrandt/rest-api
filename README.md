@@ -2,11 +2,13 @@
 
 This API will help you to separate the code that insert in the database from the code. 
 
-Requirements: 
+###### Requirements: 
 
 - Node JS, npm
 - MongoDB 4.0.0 or higher
 - Nginx
+
+###### Cloning the repository
 
 Please, go ahead to `/var/www` and create a folder for your api. For this example I will use `api.example.com` so: 
 
@@ -19,14 +21,14 @@ cd api.example.com
 git clone <this repository>
 ```
 
-After that we will need to setup the Nginx. 
+###### Setting up NGINX 
 
 ```
 cd /etc/nginx/sites-enabled/
 vim api.example.com
 ```
 
-And set some setting like these: 
+Example file:(please, replace api.example.com for your API name)
 
 ```
 upstream nodejs {
@@ -47,17 +49,29 @@ server {
     }
 }
 ```
-Aftert that you will need to restart nginx.
+
+After that you will need to restart nginx.
 ```
 nginx -t
 sudo service nginx restart
 ```
+
+To have access for the API you will need to add DNS record pointing to the server, or add the ip to your hosts file.
+
+###### Installing Dependencies
+
 Then we go back to the api folder and install npm dependencies
 ```
 cd /var/www/api.example.com
 npm install
 ```
+
+###### Setting up MongoDB
+
 Now let's start setup the Mongo
+
+If you need to install MongoDB please follow this [article](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
 ```
 mongo
 use apiexamplecomdb
@@ -66,7 +80,9 @@ db.createUser( { user: "apiexamplecom", pwd: "your_pass", roles: [ { role: "read
 
 Save the User and Pass, it will be used in the next steps. 
 
-After running the two commands, let's setup the credentials file. 
+###### Setup credentials file
+
+The API needs the credentials from MongoDB to communicate. 
 
 ```
 cp sdks/credentials-sample.json sdks/credentials.json
@@ -78,7 +94,7 @@ User: Mongo User
 Pass: Mongo Pass
 db: Mongo database name
 
-it should look like this:
+Example:
 
 ```
     "mongo": {
