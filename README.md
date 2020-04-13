@@ -1,14 +1,14 @@
-### rest-api
+# rest-api
 
 This API will help you to separate the code that insert in the database from the code. 
 
-###### Requirements: 
+## Requirements: 
 
 - Node JS, npm
 - MongoDB 4.0.0 or higher
 - Nginx
 
-###### Cloning the repository
+## Cloning the repository
 
 Please, go ahead to `/var/www` and create a folder for your api. For this example I will use `api.example.com` so: 
 
@@ -21,7 +21,7 @@ cd api.example.com
 git clone <this repository>
 ```
 
-###### Setting up NGINX 
+## Setting up NGINX 
 
 ```
 cd /etc/nginx/sites-enabled/
@@ -58,7 +58,7 @@ sudo service nginx restart
 
 To have access for the API you will need to add DNS record pointing to the server, or add the ip to your hosts file.
 
-###### Installing Dependencies
+## Installing Dependencies
 
 Then we go back to the api folder and install npm dependencies
 ```
@@ -80,7 +80,7 @@ db.createUser( { user: "apiexamplecom", pwd: "your_pass", roles: [ { role: "read
 
 Save the User and Pass, it will be used in the next steps. 
 
-###### Setup credentials file
+## Setup credentials file
 
 The API needs the credentials from MongoDB to communicate. 
 
